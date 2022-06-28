@@ -5,4 +5,5 @@ Hi! I am from Vietnam. I'm study at Hanoi University of Industry(HaUI). My major
 
 Bugs list
 
-When click on any choose file button, u will get error if do not choose any file. And I have no idea to handle it
+When click on any choose file button, u will get error if do not choose any file. And I have no idea to handle it.
+Have no handle empty files.
