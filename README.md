@@ -8,3 +8,8 @@ Bugs list
 When click on any choose file button, u will get error if do not choose any file. And I have no idea to handle it.
 
 Have no handle empty files.
+
+# Pre-setup
+run: pip install -r setup.txt
+
+to install necessary library
