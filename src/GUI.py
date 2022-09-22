@@ -42,27 +42,37 @@ def messageBox(title, sign):
 def readFile(filedir):
 
 	if ".txt" in filedir:
-		file = open(filedir, 'r')
-		message = file.read()
-		file.close()
+		with open(filedir, 'r') as file:
+			message = file.read()
 		return message
+
 	elif ".docx" in filedir or ".doc" in filedir:
-		doc = docx.Document(filedir)
-		message = ""
-		message = [message + str(doc.paragraphs[i].text) for i in range(len(doc.paragraphs))]
-		message = "".join(message)
-		doc.save(filedir)
+		try:
+			doc = docx.Document(filedir)
+			message = ""
+			message = [message + str(doc.paragraphs[i].text) for i in range(len(doc.paragraphs))]
+			message = "".join(message)
+		except:
+			print("Somethings wrong when read word.")
+		finally:
+			doc.save(filedir)
 		return message
+
 	elif ".pdf" in filedir:
-		pdfFileObj = open(filedir, 'rb')
-		pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-		# print(pdfReader.numPages)
-		# pageObj = pdfReader.getPage(0)
-		# message = pageObj.extractText()
-		message = ""
-		message = [message + str(pdfReader.getPage(i).extractText()) for i in range(pdfReader.numPages)]
-		message = "".join(message)
-		pdfFileObj.close()
+
+		try:
+			pdfFileObj = open(filedir, 'rb')
+			pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+			# print(pdfReader.numPages)
+			# pageObj = pdfReader.getPage(0)
+			# message = pageObj.extractText()
+			message = ""
+			message = [message + str(pdfReader.getPage(i).extractText()) for i in range(pdfReader.numPages)]
+			message = "".join(message)
+		except:
+			print("Somethings wrong when read pdf.")
+		finally:
+			pdfFileObj.close()
 		return message
 	else:
 		 messageBox("Erorr", False)
