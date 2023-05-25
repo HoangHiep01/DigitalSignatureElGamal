@@ -40,7 +40,7 @@ def messageBox(title, sign):
 def readFile(filedir):
 
 	if ".txt" in filedir:
-		file = open(filedir, 'r')
+		file = open(filedir, 'r', encoding = 'utf-8')
 		message = file.read()
 		file.close()
 		return message
